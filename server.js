@@ -5,6 +5,8 @@ var app = express()
 
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+app.set('port', (process.env.PORT || 8080));
+
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
@@ -35,6 +37,6 @@ app.get('/:time', function (req, res) {
     res.send(JSON.stringify(result));
 })
 
-app.listen(8080, function () {
-  console.log('Example app listening on port 8080!')
+app.listen(app.get('port'), function () {
+  console.log('Example app listening on port ' + app.get('port') + '!');
 })
